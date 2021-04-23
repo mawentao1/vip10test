@@ -14,27 +14,33 @@
 # 分析：
 # 类》房子和家具    房子的属性：占地面积和剩余面积  家具的属性：家具名和家具占地面积
 # 命名家具的列表
-class House():
-    def __init__(self,area,address):
-        self.area=area
-        self.address=address
-        self.free_area=area
-        self.furniture=[]
+
 class Furniture():
     def __init__(self,area,name):
         self.area=area
         self.name=name
+class House():
+    def __init__(self, address, area):
+        # 地理理位置
+        self.address = address
+        # 房屋⾯面积
+        self.area = area
+        # 剩余⾯面积
+        self.free_area = area
+        # 家具列列表
+        self.furniture = []
+
     def __str__(self):
         return f'房子位于{self.address},占地面积{self.area},剩余面积{self.free_area}, 家具有{self.furniture}'
-    def add_Furniture(self,item):
-        if self.free_area>item.area:
+    def add_furniture(self,item):
+        if self.free_area >= item.area:
             self.furniture.append(item.name)
-            self.free_area=item.area
+            self.free_area-=item.area
         else:
             print('家具太大，剩余面积不够，无法容纳')
 
-bed = Furniture('双⼈人床', 6)
-jia1 = Home('北北京', 1200)
+bed = Furniture('双人床', 6)
+jia1 = House('北京', 1200)
 print(jia1)
 jia1.add_furniture(bed)
 print(jia1)
